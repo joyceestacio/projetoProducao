@@ -38,7 +38,8 @@ namespace producao.api.Controllers
         }
 
         [HttpGet("getDados")]
-         public ActionResult<dynamic> GetDados(){
+        public ActionResult<dynamic> GetDados()
+        {
             var Disciplina = this.ProducaoContext.Disciplina.ToList();
             var Tema = this.ProducaoContext.Tema.ToList();
             var Conteudista = this.ProducaoContext.Conteudista.ToList();
@@ -47,20 +48,23 @@ namespace producao.api.Controllers
             var TipoProducao = this.ProducaoContext.TipoProducao.ToList();
             var Produto = this.ProducaoContext.Produto.ToList();
             var EtapaProducao = this.ProducaoContext.EtapaProducao.ToList();
-            var Result = new {Disciplina,
-                             Tema,
-                             Conteudista,
-                             Area,
-                             SubArea,
-                             TipoProducao,
-                             Produto,
-                             EtapaProducao
-                             };
+            var Result = new
+            {
+                Disciplina,
+                Tema,
+                Conteudista,
+                Area,
+                SubArea,
+                TipoProducao,
+                Produto,
+                EtapaProducao
+            };
             return Result;
         }
 
         [HttpGet("etapa")]
-        public ActionResult<IEnumerable<EtapaProducao>> GetEtapaProducao(){
+        public ActionResult<IEnumerable<EtapaProducao>> GetEtapaProducao()
+        {
             var query = ProducaoContext.EtapaProducao.ToList();
             return query;
         }
@@ -76,6 +80,20 @@ namespace producao.api.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+        }
+
+        [HttpPost("incluir")]
+        public dynamic incluir([FromBody] FProducao _producao)
+        {
+            
+            int ultimoid = this.ProducaoContext.FProducao
+                            .ToList().Max(x => x.Id) + 1;
+                            
+
+            this.ProducaoContext.FProducao.Add(_producao);
+            this.ProducaoContext.SaveChanges();
+
+            return _producao;
         }
 
         // PUT api/values/5

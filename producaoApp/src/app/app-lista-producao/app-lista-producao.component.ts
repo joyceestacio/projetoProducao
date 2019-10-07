@@ -46,7 +46,6 @@ export class AppListaProducaoComponent implements OnInit {
    }
 
 
-
    getInformacaoModal(id:any){
       this.dadoSelecionado = this.dados.filter(d => d.id === id); 
       var modal: any;
@@ -77,9 +76,13 @@ export class AppListaProducaoComponent implements OnInit {
 
       modal = document.getElementById('etapaProducao');
       modal.value=item.etapaProducao.nomeEtapa; 
-
       
    }
+
+   incluir(){
+      
+   }
+
 
   ngOnInit() {
     this.getProducao();
