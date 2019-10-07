@@ -1,0 +1,101 @@
+<div class="card text-white text-center" style="background: #0A5C87;">
+  <div class="card-header">
+    <h2>Lista de Produção <a href="index.html" class="btn btn-primary l-4">Voltar</a> </h2>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Tema</th>
+          <th scope="col">Disiplina</th>
+          <th scope="col">Etapa Produção</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dados">
+          <td>{{item.tema.nomeTema}}</td>
+          <td>{{item.disciplina.nomeDisciplina}}</td>
+          <td>{{item.etapaProducao.nomeEtapa}}</td>
+          <td>
+            <!--Botao Modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" (click)="getInformacaoModal(item.id)"
+              data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-pen"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!--inicio do modal-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Produção</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span> &times;</span>
+        </button>
+
+      </div>
+      <div class="modal-body">
+
+        <form>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="disciplina" readonly="true">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="tema" readonly="true">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="conteudista">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="area" readonly="true">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="subArea" readonly="true">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="tipoProducao" readonly="true">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="produto" readonly="true">
+          </div>
+
+          <div class="form-group">
+            <select class=" form-control">
+              <option *ngFor="let item of etapa" value={{item.id}}>{{item.nomeEtapa}}</option>
+            </select>
+          </div>
+
+          <!--data picker -->
+          <div class=" form-group">
+            <input type="text" placeholder="Data" placement="top" [bsConfig]="bsConfig" class="form-control"
+              bsDatepicker>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Enviar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!--fim do modal-->

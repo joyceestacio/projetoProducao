@@ -1,0 +1,118 @@
+<div class="card text-white text-center" style="background: #0A5C87;">
+  <div class="card-header">
+    <h2>Cadastrar Produção <a href="index.html" class="btn btn-primary l-4">Voltar</a> </h2>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <form>
+        <!--[TESTE] conteudista funciona 
+        <div class="form-group row">
+          <select class=" form-control">
+            <option *ngFor="let item of etapaCadastrarProducao" value={{item.id}}>{{item.nomeEtapa}}</option>
+          </select>
+        </div>
+        <fim [TESTE] conteudista funciona -->
+
+        <!--[DISCPLINA]  -->
+        <div class="form-group row">
+          <select class=" form-control">
+            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.disciplina.nomeDisciplina}}
+            </option>
+          </select>
+        </div>
+        <!-- fim [DISCIPLINA] -->
+
+        <!--[TEMA]  -->
+        <div class="form-group row">
+          <select class="form-control">
+            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.tema.nomeTema}} </option>
+          </select>
+        </div>
+        <!-- fim [TEMA] -->
+
+        <!--[CONTEUDISTA]  -->
+        <div class="form-group row">
+          <select class="form-control">
+            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.conteudista.nomeConteudista}}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <!-- fim [CONTEUDISTA] -->
+
+    <!-- [ÁREA] -->
+    <div class="col-4">
+      <div class="form-group row  pl-0">
+        <select class="form-control">
+          <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.area.nomeArea}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- fim [ÁREA] -->
+
+    <!-- [SUBÁREA] -->
+    <div class="col-4">
+      <div class="form-group row  pl-3">
+        <select class=" form-control">
+          <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.subArea.nomeSubArea}}</option>
+        </select>
+      </div>
+    </div>
+    <!-- fim [SUBÁREA] -->
+
+    <!-- [TIPO DE PRODUÇÃO] -->
+    <div class="col-4">
+      <form>
+        <div class="form-group row  pl-3">
+          <select class=" form-control">
+            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.tipoProducao.nomeTipoProducao}}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <!-- fim [TIPO DE PRODUÇÃO] -->
+
+    <!-- [PRODUTO] -->
+    <div class="col-4">
+      <form>
+        <div class="form-group row  pl-0">
+          <select class="form-control">
+            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.produto.nomeProduto}}</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <!-- fim [PRODUTO] -->
+
+    <!--  [ETAPA] -->
+    <div class="col-4">
+      <form>
+        <div class="form-group row  pl-3">
+          <select class=" form-control">
+            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.etapaProducao.nomeEtapa}}
+            </option>
+
+          </select>
+        </div>
+      </form>
+    </div>
+    <!-- fim [ETAPA] -->
+
+    <!--data picker -->
+    <div class="col-xs-12 col-12 col-md-4 form-group">
+      <input type="text" placeholder="Data" [bsConfig]="bsConfig" class="form-control" bsDatepicker>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+      title="Tooltip na parte superior">
+      <span class="fas fa-save fa-2x"> </span>
+    </button>
+  </div>
