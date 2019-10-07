@@ -9,18 +9,12 @@
   <div class="row">
     <div class="col-12">
       <form>
-        <!--[TESTE] conteudista funciona 
-        <div class="form-group row">
-          <select class=" form-control">
-            <option *ngFor="let item of etapaCadastrarProducao" value={{item.id}}>{{item.nomeEtapa}}</option>
-          </select>
-        </div>
-        <fim [TESTE] conteudista funciona -->
 
         <!--[DISCPLINA]  -->
         <div class="form-group row">
           <select class=" form-control">
-            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.disciplina.nomeDisciplina}}
+            <option>ESCOLHA UMA DISCIPLINA</option>
+            <option *ngFor="let item of disciplinas" value={{item.id}}>{{item.nomeDisciplina + "(" + item.codigoDisciplina + ")"}}
             </option>
           </select>
         </div>
@@ -29,7 +23,8 @@
         <!--[TEMA]  -->
         <div class="form-group row">
           <select class="form-control">
-            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.tema.nomeTema}} </option>
+              <option>ESCOLHA UM TEMA</option>
+            <option *ngFor="let item of temas" value={{item.id}}>{{item.nomeTema}} </option>
           </select>
         </div>
         <!-- fim [TEMA] -->
@@ -37,7 +32,8 @@
         <!--[CONTEUDISTA]  -->
         <div class="form-group row">
           <select class="form-control">
-            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.conteudista.nomeConteudista}}
+              <option>ESCOLHA UM CONTEUDISTA</option>
+            <option *ngFor="let item of conteudistas" value={{item.id}}>{{item.nomeConteudista}}
             </option>
           </select>
         </div>
@@ -49,7 +45,8 @@
     <div class="col-4">
       <div class="form-group row  pl-0">
         <select class="form-control">
-          <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.area.nomeArea}}</option>
+            <option>ESCOLHA UMA ÁREA</option>
+          <option *ngFor="let item of areas" value={{item.id}}>{{item.nomeArea}}</option>
         </select>
       </div>
     </div>
@@ -59,7 +56,8 @@
     <div class="col-4">
       <div class="form-group row  pl-3">
         <select class=" form-control">
-          <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.subArea.nomeSubArea}}</option>
+            <option>ESCOLHA UMA SUB ÁREA</option>
+          <option *ngFor="let item of subAreas" value={{item.id}}>{{item.nomeSubArea}}</option>
         </select>
       </div>
     </div>
@@ -70,7 +68,7 @@
       <form>
         <div class="form-group row  pl-3">
           <select class=" form-control">
-            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.tipoProducao.nomeTipoProducao}}
+            <option *ngFor="let item of producoes" value={{item.id}}>{{item.nomeTipoProducao}}
             </option>
           </select>
         </div>
@@ -83,7 +81,7 @@
       <form>
         <div class="form-group row  pl-0">
           <select class="form-control">
-            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.produto.nomeProduto}}</option>
+            <option *ngFor="let item of produtos" value={{item.id}}>{{item.nomeProduto}}</option>
           </select>
         </div>
       </form>
@@ -95,7 +93,8 @@
       <form>
         <div class="form-group row  pl-3">
           <select class=" form-control">
-            <option *ngFor="let item of dadosCastrarProducao" value={{item.id}}>{{item.etapaProducao.nomeEtapa}}
+            <option>ESCOLHA UMA OPÇÃO</option>
+            <option *ngFor="let item of etapasProducoes" value={{item.id}}>{{item.nomeEtapa}}
             </option>
 
           </select>
@@ -106,7 +105,7 @@
 
     <!--data picker -->
     <div class="col-xs-12 col-12 col-md-4 form-group">
-      <input type="text" placeholder="Data" [bsConfig]="bsConfig" class="form-control" bsDatepicker>
+      <input type="text" placeholder="Data" [bsConfig]="bsConfig" [bsValue]="bsValue" class="form-control" bsDatepicker>
     </div>
   </div>
 

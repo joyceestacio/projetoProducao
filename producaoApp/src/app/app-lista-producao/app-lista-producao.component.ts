@@ -18,6 +18,7 @@ export class AppListaProducaoComponent implements OnInit {
   dados: any;
   dadoSelecionado: any;
   etapa: any;
+  bsValue = new Date();
 
   constructor(private local: BsLocaleService, private http: HttpClient) {
     local.use('pt-br');

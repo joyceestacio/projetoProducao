@@ -25,7 +25,7 @@ namespace producao.api.Controllers
         {
             var query = ProducaoContext.FProducao
             .Include(a => a.Area)
-            .Include( c => c.Conteudista)
+            .Include(c => c.Conteudista)
             .Include(c => c.Curso)
             .Include(d => d.Disciplina)
             .Include(e => e.EtapaProducao)
@@ -37,10 +37,26 @@ namespace producao.api.Controllers
             return query;
         }
 
-        [HttpGet("cadastrarProducao")]
-         public ActionResult<List<dynamic>> GetDados(){
-            var disciplina = this.ProducaoContext.Disciplina.ToList();
-            return null;
+        [HttpGet("getDados")]
+         public ActionResult<dynamic> GetDados(){
+            var Disciplina = this.ProducaoContext.Disciplina.ToList();
+            var Tema = this.ProducaoContext.Tema.ToList();
+            var Conteudista = this.ProducaoContext.Conteudista.ToList();
+            var Area = this.ProducaoContext.Area.ToList();
+            var SubArea = this.ProducaoContext.SubArea.ToList();
+            var TipoProducao = this.ProducaoContext.TipoProducao.ToList();
+            var Produto = this.ProducaoContext.Produto.ToList();
+            var EtapaProducao = this.ProducaoContext.EtapaProducao.ToList();
+            var Result = new {Disciplina,
+                             Tema,
+                             Conteudista,
+                             Area,
+                             SubArea,
+                             TipoProducao,
+                             Produto,
+                             EtapaProducao
+                             };
+            return Result;
         }
 
         [HttpGet("etapa")]

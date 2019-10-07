@@ -16,69 +16,52 @@ defineLocale('pt-br', ptBrLocale);
 export class AppProducaoComponent implements OnInit {
 
   bsConfig = { containerClass: 'theme-dark-blue' };
-  dadosCastrarProducao: any;
+  dadosCasdastrarProducao: any;
   dadoSelecionadoProducao: any;
   etapaCadastrarProducao: any;
+  disciplinas: any;
+  temas: any;
+  conteudistas: any;
+  areas: any;
+  subAreas: any;
+  producoes: any;
+  produtos: any;
+  etapasProducoes: any;
+  bsValue = new Date();
 
   constructor(private local: BsLocaleService, private http: HttpClient) {
     local.use('pt-br');
   }
 
   getCadastrarProducao() {
-    this.http.get('http://localhost:5000/api/values/').subscribe(
+    this.http.get('http://localhost:5000/api/values/getDados').subscribe(
 
      response => {
-       this.dadosCastrarProducao = response;
-       console.log(this.dadosCastrarProducao);
+       this.dadosCasdastrarProducao = response;
+       console.log(this.dadosCasdastrarProducao);
+       this.getInformacaoInput();
      },
      error => {console.log(error)}
      )
-
-     this.http.get('http://localhost:5000/api/values/etapa').subscribe(
-       Response => {
-         this.etapaCadastrarProducao = Response;
-       },
-       error => {
-         console.log(error)}
-     )
   }
 
-  getInformacaoInput(id:any){
-    this.dadoSelecionadoProducao = this.dadosCastrarProducao.filter(d => d.id === id); 
+  getInformacaoInput(){
     var input: any;
-    var disciplina: any;
-
-    var item = this.dadoSelecionadoProducao[0];
-
-    input = document.getElementById('disciplina'); 
-    input.value=item.disciplina.nomeDisciplina;
-    
-    input = document.getElementById('tema');
-    input.value=item.tema.nomeTema;
-
-    input = document.getElementById('conteudista');
-    input.value=item.conteudista.nomeConteudista;
-
-    input = document.getElementById('area');
-    input.value=item.area.nomeArea;
-
-    input = document.getElementById('subArea');
-    input.value=item.subArea.nomeSubArea;
-    
-    input = document.getElementById('tipoProducao');
-    input.value=item.tipoProducao.nomeTipoProducao;
-
-    input = document.getElementById('produto');
-    input.value=item.produto.nomeProduto;
-
-    input = document.getElementById('etapaProducao');
-    input.value=item.etapaProducao.nomeEtapa; 
-
+    this.disciplinas = this.dadosCasdastrarProducao.disciplina;
+    this.temas = this.dadosCasdastrarProducao.tema;
+    this.conteudistas = this.dadosCasdastrarProducao.conteudista;
+    this.areas = this.dadosCasdastrarProducao.area;
+    this.subAreas = this.dadosCasdastrarProducao.subArea;
+    this.producoes = this.dadosCasdastrarProducao.tipoProducao;
+    this.produtos = this.dadosCasdastrarProducao.produto;
+    this.etapasProducoes = this.dadosCasdastrarProducao.etapaProducao;
   }
 
 
   ngOnInit() {
     this.getCadastrarProducao();
+
+
   }
 
 }
