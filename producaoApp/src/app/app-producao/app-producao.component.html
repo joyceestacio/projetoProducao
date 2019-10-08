@@ -5,9 +5,7 @@
 </div>
 
 
-<div class="container">
-  <div class="alert alert-danger" *ngIf="iserror">Produção não pode ser incluída.</div>
-</div>
+
 
 
 <div class="container mt-5">
@@ -37,7 +35,7 @@
         <!--[CONTEUDISTA]  -->
         <div class="form-group row">
           <select class="form-control" id="conteudista">
-            <option disabled value="">ESCOLHA UM CONTEUDISTA</option>
+            <option value="4">ESCOLHA UM CONTEUDISTA</option>
             <option *ngFor="let item of conteudistas" value={{item.id}}>{{item.nomeConteudista}}
             </option>
           </select>
@@ -118,7 +116,6 @@
       (click)="incluir()">
       <span class="fas fa-save fa-1x"></span> Incluir
     </button>
-    
     
   </div>
   

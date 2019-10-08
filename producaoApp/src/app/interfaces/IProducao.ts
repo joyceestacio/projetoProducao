@@ -10,5 +10,5 @@ idSubArea:any;
 idProduto:any;
 idEtapa:any;
 idTipo:any;
-data: any;
+// data: any;
 }

@@ -45,9 +45,9 @@ namespace producao.api.Model
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Data)
-                    .HasColumnName("DATA")
-                    .HasColumnType("date");
+                // entity.Property(e => e.Data)
+                //     .HasColumnName("DATA")
+                //     .HasColumnType("date");
 
                 entity.Property(e => e.IdArea).HasColumnName("ID_AREA");
 

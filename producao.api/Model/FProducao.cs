@@ -8,7 +8,7 @@ namespace producao.api.Model
     {
         public int Id { get; set; }
         [ForeignKey("Curso")]
-        public int IdCodCurso { get; set; }
+        public int? IdCodCurso { get; set; }
         public int IdPeriodo { get; set; }
         [ForeignKey("Disciplina")]
         public int? IdDisciplina { get; set; }
@@ -25,17 +25,18 @@ namespace producao.api.Model
         [ForeignKey("EtapaProducao")]
         public int? IdEtapa { get; set; }
         [ForeignKey("TipoProducao")]
-        public int? IdTipo { get; set; }
-        public DateTime Data { get; set; }
+        public int? IdTipo { get; set; }  
+         
+        // public DateTime Data { get; set; }
 
         /*essas informações vem do model criado (Relações)*/
         public virtual Area Area { get; set; }
-        public virtual Conteudista Conteudista { get; set; }
-        public virtual Curso Curso { get; set; }
+        public virtual Conteudista Conteudista { get; set;}
+        public virtual Curso Curso { get; set;}
         public virtual Disciplina Disciplina {get; set; }
         public virtual EtapaProducao EtapaProducao { get; set; }
-        public virtual Produto Produto { get; set; }
-        public virtual SubArea SubArea { get; set; }
+        public virtual Produto Produto { get; set;}
+        public virtual SubArea SubArea { get; set;}
         public virtual Tema Tema { get; set; }
         public virtual TipoProducao TipoProducao { get; set; }
 

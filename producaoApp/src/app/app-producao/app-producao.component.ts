@@ -31,12 +31,15 @@ export class AppProducaoComponent implements OnInit {
   bsValue = new Date();
   producao = new IProducao(); //interface
   iserror = false;
+  incluido = false;
+  show;
+  modal: any;
 
   constructor(private local: BsLocaleService, private http: HttpClient) {
     local.use('pt-br');
   }
 
-  incluir(){
+  incluir() {
 
      var obj:any = document.getElementById('disciplina'); //pegando o valor do input pelo id
      console.log(obj.value);
@@ -68,11 +71,19 @@ export class AppProducaoComponent implements OnInit {
     // tslint:disable-next-line: align
     this.http.post('http://localhost:5000/api/values/incluir', this.producao).subscribe(
       response => {
-        console.log(this.producao);
-        this.iserror = false;// console.log(response);
+        // var resp:any = response;
+        // console.log(this.producao);
+        this.iserror = false; // console.log(response);
+        this.incluido = true;
+        alert('Producao incluída');
       },
-      error => { this.iserror = true; }
-    )
+      error => {
+        this.iserror = true;
+        this.incluido = false;
+        alert('Producao não incluída');
+        // console.log(this.producao);
+      }
+    );
 
   }
 
@@ -84,11 +95,12 @@ export class AppProducaoComponent implements OnInit {
        console.log(this.dadosCasdastrarProducao);
        this.getInformacaoInput();
      },
-     error => {console.log(error)}
-     )
+     error => {
+    }
+     );
   }
 
-  getInformacaoInput(){
+  getInformacaoInput() {
     var input: any;
     this.disciplinas = this.dadosCasdastrarProducao.disciplina;
     this.temas = this.dadosCasdastrarProducao.tema;

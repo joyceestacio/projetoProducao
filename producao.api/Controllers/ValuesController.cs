@@ -38,8 +38,19 @@ namespace producao.api.Controllers
             return query;
         }
 
+        [HttpGet("getProfessores")]
+        public ActionResult<Conteudista> getProfessores() {
+
+            var result =  this.ProducaoContext.Conteudista.ToList();
+
+            return Ok(result);
+        }
+
         [HttpGet("getDados")]
         public ActionResult<dynamic> GetDados()
+        {
+
+        try
         {
             var Disciplina = this.ProducaoContext.Disciplina.ToList();
             var Tema = this.ProducaoContext.Tema.ToList();
@@ -60,7 +71,14 @@ namespace producao.api.Controllers
                 Produto,
                 EtapaProducao
             };
-            return Result;
+            return Ok(Result);
+            
+        }
+        catch (System.Exception e)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        }
+            
         }
 
         [HttpGet("etapa")]
@@ -96,9 +114,9 @@ namespace producao.api.Controllers
                     this.ProducaoContext.SaveChanges();
                     return Ok(_producao);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             { 
-                return StatusCode(StatusCodes.Status500InternalServerError, "Item não foi incluído.");
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
             }
 
         }
