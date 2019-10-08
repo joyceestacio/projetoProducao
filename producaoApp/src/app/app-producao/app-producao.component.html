@@ -12,7 +12,7 @@
         <!--[DISCPLINA]  -->
         <div class="form-group row">
           <select class=" form-control" id="disciplina">
-            <option disabled>ESCOLHA UMA DISCIPLINA</option>
+            <option disabled value="">ESCOLHA UMA DISCIPLINA</option>
             <option *ngFor="let item of disciplinas" value={{item.id}}>
               {{item.nomeDisciplina + "(" + item.codigoDisciplina + ")"}}
             </option>
@@ -56,7 +56,7 @@
     <div class="col-4">
       <div class="form-group row  pl-3">
         <select class=" form-control" id="subArea">
-          <option disabled>ESCOLHA UMA SUB ÁREA</option>
+          <option disabled  value="">ESCOLHA UMA SUB ÁREA</option>
           <option *ngFor="let item of subAreas" value={{item.id}}>{{item.nomeSubArea}}</option>
         </select>
       </div>
@@ -68,7 +68,7 @@
       <form>
         <div class="form-group row  pl-3">
           <select class=" form-control" id="producao">
-              <option disabled>ESCOLHA UMA PRODUÇÃO</option>
+              <option disabled value="">ESCOLHA UMA PRODUÇÃO</option>
             <option *ngFor="let item of producoes" value={{item.id}}>{{item.nomeTipoProducao}}
             </option>
           </select>
@@ -82,7 +82,7 @@
       <form>
         <div class="form-group row  pl-0">
           <select class="form-control" id="produto">
-              <option disabled>ESCOLHA UM PRODUTO</option>
+              <option disabled value="">ESCOLHA UM PRODUTO</option>
             <option *ngFor="let item of produtos" value={{item.id}}>{{item.nomeProduto}}</option>
           </select>
         </div>
@@ -95,7 +95,7 @@
       <form>
         <div class="form-group row  pl-3">
           <select class=" form-control" id="etapa">
-            <option disabled>ESCOLHA UMA OPÇÃO</option>
+            <option disabled value="">ESCOLHA UMA OPÇÃO</option>
             <option *ngFor="let item of etapasProducoes" value={{item.id}}>{{item.nomeEtapa}}
             </option>
 
