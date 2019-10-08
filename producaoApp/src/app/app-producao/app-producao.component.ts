@@ -68,7 +68,7 @@ export class AppProducaoComponent implements OnInit {
     // tslint:disable-next-line: align
     this.http.post('http://localhost:5000/api/values/incluir', this.producao).subscribe(
       response => {
-        console.log(this.producao)
+        console.log(this.producao);
         this.iserror = false;// console.log(response);
       },
       error => { this.iserror = true; }
