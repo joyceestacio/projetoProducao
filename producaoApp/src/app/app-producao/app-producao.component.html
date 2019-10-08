@@ -23,7 +23,7 @@
         <!--[TEMA]  -->
         <div class="form-group row">
           <select class="form-control" id="tema">
-            <option disabled>ESCOLHA UM TEMA</option>
+            <option disabled value="">ESCOLHA UM TEMA</option>
             <option *ngFor="let item of temas" value={{item.id}}>{{item.nomeTema}} </option>
           </select>
         </div>
@@ -32,7 +32,7 @@
         <!--[CONTEUDISTA]  -->
         <div class="form-group row">
           <select class="form-control" id="conteudista">
-            <option disabled>ESCOLHA UM CONTEUDISTA</option>
+            <option disabled value="">ESCOLHA UM CONTEUDISTA</option>
             <option *ngFor="let item of conteudistas" value={{item.id}}>{{item.nomeConteudista}}
             </option>
           </select>
@@ -45,7 +45,7 @@
     <div class="col-4">
       <div class="form-group row  pl-0">
         <select class="form-control" id="area">
-          <option disabled>ESCOLHA UMA ÁREA</option>
+          <option disabled value="">ESCOLHA UMA ÁREA</option>
           <option *ngFor="let item of areas" value={{item.id}}>{{item.nomeArea}}</option>
         </select>
       </div>
