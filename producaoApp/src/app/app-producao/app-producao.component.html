@@ -1,7 +1,12 @@
-<div class="card text-white text-center" style="background: #0A5C87;">
+<div class="card text-white text-center mb-5" style="background: #0A5C87;">
   <div class="card-header">
     <h2>Cadastrar Produção</h2>
   </div>
+</div>
+
+
+<div class="container">
+  <div class="alert alert-danger" *ngIf="iserror">Produção não pode ser incluída.</div>
 </div>
 
 
@@ -19,7 +24,7 @@
           </select>
         </div>
         <!-- fim [DISCIPLINA] -->
-
+        
         <!--[TEMA]  -->
         <div class="form-group row">
           <select class="form-control" id="tema">
@@ -28,7 +33,7 @@
           </select>
         </div>
         <!-- fim [TEMA] -->
-
+        
         <!--[CONTEUDISTA]  -->
         <div class="form-group row">
           <select class="form-control" id="conteudista">
@@ -40,7 +45,7 @@
       </form>
     </div>
     <!-- fim [CONTEUDISTA] -->
-
+    
     <!-- [ÁREA] -->
     <div class="col-4">
       <div class="form-group row  pl-0">
@@ -51,7 +56,7 @@
       </div>
     </div>
     <!-- fim [ÁREA] -->
-
+    
     <!-- [SUBÁREA] -->
     <div class="col-4">
       <div class="form-group row  pl-3">
@@ -62,13 +67,13 @@
       </div>
     </div>
     <!-- fim [SUBÁREA] -->
-
+    
     <!-- [TIPO DE PRODUÇÃO] -->
     <div class="col-4">
       <form>
         <div class="form-group row  pl-3">
           <select class=" form-control" id="producao">
-              <option disabled value="">ESCOLHA UMA PRODUÇÃO</option>
+            <option disabled value="">ESCOLHA UMA PRODUÇÃO</option>
             <option *ngFor="let item of producoes" value={{item.id}}>{{item.nomeTipoProducao}}
             </option>
           </select>
@@ -76,20 +81,20 @@
       </form>
     </div>
     <!-- fim [TIPO DE PRODUÇÃO] -->
-
+    
     <!-- [PRODUTO] -->
     <div class="col-4">
       <form>
         <div class="form-group row  pl-0">
           <select class="form-control" id="produto">
-              <option disabled value="">ESCOLHA UM PRODUTO</option>
+            <option disabled value="">ESCOLHA UM PRODUTO</option>
             <option *ngFor="let item of produtos" value={{item.id}}>{{item.nomeProduto}}</option>
           </select>
         </div>
       </form>
     </div>
     <!-- fim [PRODUTO] -->
-
+    
     <!--  [ETAPA] -->
     <div class="col-4">
       <form>
@@ -98,23 +103,23 @@
             <option disabled value="">ESCOLHA UMA OPÇÃO</option>
             <option *ngFor="let item of etapasProducoes" value={{item.id}}>{{item.nomeEtapa}}
             </option>
-
+            
           </select>
         </div>
       </form>
     </div>
     <!-- fim [ETAPA] -->
-
-
+    
+    
     <div class="col-md-4 form-group">
       <a href="index.html" class="btn btn-primary" style="margin-left:45%;"><i class="fas fa-arrow-left"></i> Voltar</a>
-
+      
       <button type="button" class="btn btn-primary" style="margin-left:5%;" data-toggle="tooltip" data-placement="top" title="salvar"
-        (click)="incluir()">
-        <span class="fas fa-save fa-1x"></span> Incluir
-      </button>
-
-
-    </div>
-
+      (click)="incluir()">
+      <span class="fas fa-save fa-1x"></span> Incluir
+    </button>
+    
+    
   </div>
+  
+</div>

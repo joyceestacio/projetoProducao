@@ -29,7 +29,8 @@ export class AppProducaoComponent implements OnInit {
   produtos: any;
   etapasProducoes: any;
   bsValue = new Date();
-  producao= new IProducao(); //interface
+  producao = new IProducao(); //interface
+  iserror = false;
 
   constructor(private local: BsLocaleService, private http: HttpClient) {
     local.use('pt-br');
@@ -63,11 +64,14 @@ export class AppProducaoComponent implements OnInit {
     obj = document.getElementById('etapa');
     this.producao.idEtapa = obj.value;
 
+
+    // tslint:disable-next-line: align
     this.http.post('http://localhost:5000/api/values/incluir', this.producao).subscribe(
       response => {
-        console.log(response);
+        console.log(this.producao)
+        this.iserror = false;// console.log(response);
       },
-      error => {console.log(error)}
+      error => { this.iserror = true; }
     )
 
   }

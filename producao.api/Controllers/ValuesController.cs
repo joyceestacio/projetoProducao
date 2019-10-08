@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using producao.api.Model;
@@ -83,17 +84,23 @@ namespace producao.api.Controllers
         }
 
         [HttpPost("incluir")]
-        public dynamic incluir([FromBody] FProducao _producao)
+        public ActionResult incluir([FromBody] FProducao _producao)
         {
             
-            int ultimoid = this.ProducaoContext.FProducao
-                            .ToList().Max(x => x.Id) + 1;
-                            
+            // int ultimoid = this.ProducaoContext.FProducao
+            //                 .ToList().Max(x => x.Id) + 1;
 
-            this.ProducaoContext.FProducao.Add(_producao);
-            this.ProducaoContext.SaveChanges();
+            try
+            {
+                    this.ProducaoContext.FProducao.Add(_producao);
+                    this.ProducaoContext.SaveChanges();
+                    return Ok(_producao);
+            }
+            catch (System.Exception)
+            { 
+                return StatusCode(StatusCodes.Status500InternalServerError, "Item não foi incluído.");
+            }
 
-            return _producao;
         }
 
         // PUT api/values/5
