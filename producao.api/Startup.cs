@@ -27,8 +27,8 @@ namespace producao.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<TempProducaoContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); // adicionando na controller o acesso ao banco de dados
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<TempProducaoContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); // adicionando na controller o acesso ao banco de dados
             services.AddCors();
         }
 

@@ -57,7 +57,6 @@ export class AppListaProducaoComponent implements OnInit {
 
 
 
-
     console.log(nomeProf);
 
   }

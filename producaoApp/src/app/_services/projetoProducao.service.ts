@@ -5,30 +5,48 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProjetoProducaoService {
-  /*app-lista-producao*/ 
+
+  /*  ambiente teste
+  
+  //--app-lista-producao--// 
   baseUrlGetProducaoValues = 'http://localhost:5000/api/values/';
   baseUrlGetProducaoEtapa = 'http://localhost:5000/api/values/etapa';
   baseUrlGetProfessores ='http://localhost:5000/api/values/getProfessores';
 
-  /*app-producao*/
+   //--app-producao --//
   baseUrlPostValuesIncluir = 'http://localhost:5000/api/values/incluir';
-  baseUrlGetValuesDados = 'http://localhost:5000/api/values/getDados'; 
+  baseUrlGetValuesDados = 'http://localhost:5000/api/values/getDados'; */
 
-constructor(private http: HttpClient) { }
+  baseUrl = 'http://localhost:5000/api/values/';
 
-getProducaoValues() {
-    return this.http.get(this.baseUrlGetProducaoValues);
-  }
-  
-getProducaoEtapa() {
-    return this.http.get(this.baseUrlGetProducaoEtapa);
-  }
 
-getProfessores() {
-  return this.http.get(this.baseUrlGetProfessores);
+  constructor(private http: HttpClient) { }
+
+  getProducaoValues() {
+    return this.http.get(this.baseUrl);
   }
 
+  getProducaoEtapa() {
+    return this.http.get(this.baseUrl + 'etapa');
+  }
 
+  getProfessores() {
+    return this.http.get(this.baseUrl + 'getProfessores');
+  }
+
+  Incluir(body: any) {
+    return this.http.post(this.baseUrl +'incluir', body);
+  }
+
+  getProducao() {
+    return this.http.get(this.baseUrl + 'getDados');
+  }
+
+  /* ambiente teste
+  getProfessores() {
+    return this.http.get(this.baseUrlGetProfessores);
+    }
+  */
 
 
 }

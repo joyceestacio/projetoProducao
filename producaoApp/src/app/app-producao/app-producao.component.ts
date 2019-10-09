@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { HttpClient } from '@angular/common/http';
 import { IProducao } from '../interfaces/IProducao';
-//import { ProjetoProducaoService } from '../_services/projetoProducao.service';
+import { ProjetoProducaoService } from '../_services/projetoProducao.service';
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -36,7 +35,7 @@ export class AppProducaoComponent implements OnInit {
   show;
   modal: any;
 
-  constructor(private local: BsLocaleService, private http: HttpClient /*private projetoProducaoService: ProjetoProducaoService*/) {
+  constructor(private local: BsLocaleService,private projetoProducaoService: ProjetoProducaoService) {
     local.use('pt-br');
   }
 
@@ -70,7 +69,8 @@ export class AppProducaoComponent implements OnInit {
 
 
     // tslint:disable-next-line: align
-    this.http.post('http://localhost:5000/api/values/incluir', this.producao).subscribe(
+
+      this.projetoProducaoService.Incluir(this.producao).subscribe(
       response => {
         // var resp:any = response;
         // console.log(this.producao);
@@ -89,7 +89,7 @@ export class AppProducaoComponent implements OnInit {
   }
 
   getCadastrarProducao() {
-    this.http.get('http://localhost:5000/api/values/getDados').subscribe(
+      this.projetoProducaoService.getProducao().subscribe(
 
      response => {
        this.dadosCasdastrarProducao = response;
