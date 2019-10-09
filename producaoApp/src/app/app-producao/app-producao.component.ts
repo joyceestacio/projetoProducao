@@ -4,6 +4,7 @@ import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { HttpClient } from '@angular/common/http';
 import { IProducao } from '../interfaces/IProducao';
+//import { ProjetoProducaoService } from '../_services/projetoProducao.service';
 
 defineLocale('pt-br', ptBrLocale);
 
@@ -35,7 +36,7 @@ export class AppProducaoComponent implements OnInit {
   show;
   modal: any;
 
-  constructor(private local: BsLocaleService, private http: HttpClient) {
+  constructor(private local: BsLocaleService, private http: HttpClient /*private projetoProducaoService: ProjetoProducaoService*/) {
     local.use('pt-br');
   }
 

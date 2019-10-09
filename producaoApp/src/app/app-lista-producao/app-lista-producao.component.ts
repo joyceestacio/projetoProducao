@@ -2,8 +2,8 @@ import { Component, OnInit, ɵConsole } from '@angular/core';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { HttpClient } from '@angular/common/http';
 import { IProducao } from '../interfaces/IProducao';
+import { ProjetoProducaoService } from '../_services/projetoProducao.service';
 
 defineLocale ('pt-br', ptBrLocale);
 
@@ -26,14 +26,14 @@ export class AppListaProducaoComponent implements OnInit {
   producao: IProducao;
 
 
-  constructor(private local: BsLocaleService, private http: HttpClient) {
+  constructor(private local: BsLocaleService, private projetoProducaoService: ProjetoProducaoService ) {
     local.use('pt-br');
 
    }
 
    getProfessores() {
 
-    this.http.get('http://localhost:5000/api/values/getProfessores').subscribe(
+    this.projetoProducaoService.getProfessores().subscribe(
 
      response => {
        
@@ -83,7 +83,7 @@ export class AppListaProducaoComponent implements OnInit {
 
 
    getProducao() {
-     this.http.get('http://localhost:5000/api/values/').subscribe(
+     this.projetoProducaoService.getProducaoValues().subscribe(
 
      response => {
        this.dados = response;
@@ -93,7 +93,7 @@ export class AppListaProducaoComponent implements OnInit {
     }
      );
 
-     this.http.get('http://localhost:5000/api/values/etapa').subscribe(
+     this.projetoProducaoService.getProducaoEtapa().subscribe(
        Response => {
          this.etapa = Response;
        },
