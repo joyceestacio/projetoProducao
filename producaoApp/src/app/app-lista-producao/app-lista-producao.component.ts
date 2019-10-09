@@ -33,7 +33,7 @@ export class AppListaProducaoComponent implements OnInit {
 
    getProfessores() {
 
-    this.http.get('http://10.200.0.9/api/values/getProfessores').subscribe(
+    this.http.get('http://10.200.0.9:81/api/values/getProfessores').subscribe(
 
      response => {
        
@@ -83,7 +83,7 @@ export class AppListaProducaoComponent implements OnInit {
 
 
    getProducao() {
-     this.http.get('http://10.200.0.9/api/api/values/').subscribe(
+     this.http.get('http://10.200.0.9:81/api/api/values/').subscribe(
 
      response => {
        this.dados = response;
@@ -93,7 +93,7 @@ export class AppListaProducaoComponent implements OnInit {
     }
      );
 
-     this.http.get('http://10.200.0.9/api/api/values/etapa').subscribe(
+     this.http.get('http://10.200.0.9:81/api/api/values/etapa').subscribe(
        Response => {
          this.etapa = Response;
        },
