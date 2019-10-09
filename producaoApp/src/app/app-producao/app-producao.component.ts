@@ -92,7 +92,7 @@ export class AppProducaoComponent implements OnInit {
 
      response => {
        this.dadosCasdastrarProducao = response;
-       console.log(this.dadosCasdastrarProducao);
+       // console.log(this.dadosCasdastrarProducao);
        this.getInformacaoInput();
      },
      error => {
