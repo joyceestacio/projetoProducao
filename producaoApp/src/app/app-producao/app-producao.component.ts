@@ -88,11 +88,11 @@ export class AppProducaoComponent implements OnInit {
   }
 
   getCadastrarProducao() {
-    this.http.get('http://localhost:5000/api/values/getDados').subscribe(
+    this.http.get('http://10.200.0.9:81/api/api/values/getDados').subscribe(
 
      response => {
        this.dadosCasdastrarProducao = response;
-       console.log(this.dadosCasdastrarProducao);
+       // console.log(this.dadosCasdastrarProducao);
        this.getInformacaoInput();
      },
      error => {
@@ -103,7 +103,6 @@ export class AppProducaoComponent implements OnInit {
   getInformacaoInput() {
     var input: any;
     this.disciplinas = this.dadosCasdastrarProducao.disciplina;
-    // console.log(this.disciplinas.sort((a, b) => a.nomeDiscplina - b.nomeDiscplina));
     this.temas = this.dadosCasdastrarProducao.tema;
     this.conteudistas = this.dadosCasdastrarProducao.conteudista;
     this.areas = this.dadosCasdastrarProducao.area;

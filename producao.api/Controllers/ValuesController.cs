@@ -76,7 +76,7 @@ namespace producao.api.Controllers
         }
         catch (System.Exception e)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            return  e.Message;
         }
             
         }
