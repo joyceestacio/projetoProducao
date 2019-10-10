@@ -4,105 +4,126 @@
   </div>
 </div>
 
-
 <div class="container mt-5">
-  <div class="form-group row">
-    <a href="index.html" class="btn btn-primary l-4">Voltar</a>
-  </div>
   
   <div class="row">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Tema</th>
-          <th scope="col">Disiplina</th>
-          <th scope="col">Etapa Produção</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of dados">
-          <td>{{item.tema.nomeTema}}</td>
-          <td>{{item.disciplina.nomeDisciplina}}</td>
-          <td>{{item.etapaProducao.nomeEtapa}}</td>
-          <td>
-            <!--Botao Modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" (click)="getInformacaoModal(item.id)"
-            data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-pen"></i></button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
     
-  </div>
-</div>
+    <div class="form-group col-md-8">
+      <div class="input-group mb-3">
+        <input  (keyup) = "filtrarItem($event.target.value)" type="text" class="form-control" placeholder="Digite o tema, disciplina, etapa ou código da disciplina" aria-label="Recipient's username" aria-describedby="basic-addon2">
 
-<!--inicio do modal-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Editar Produção</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-        <span> &times;</span>
-      </button>
+      </div>
+    </div>
+
+    <div class="col-md-1 offset-3">
+      <button href="index.html" class="btn btn-primary">Voltar</button>
+      </div>  
+    </div>
+    <div class="row">
+      <table class="table table-striped" style="font-size: 13px;">
+        <thead>
+          <tr>
+            <th scope="col">Tema</th>
+            <th scope="col">Disciplina</th>
+            <th scope="col">Etapa Produção</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <div *ngIf="!dadosFiltrados.length" class="alert alert-danger mt-2">Ops! Dados não localizados</div>
+          <tr *ngFor="let item of dadosFiltrados">
+            <td>{{item.tema.nomeTema}}</td>
+            <td>{{item.disciplina.nomeDisciplina}}</td>
+            <td>{{item.etapaProducao.nomeEtapa}}</td>
+            <td>
+              <!--Botao Modal-->
+              <div class="btn-group">
+                
+                <button tooltip= "Editar" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" (click)="getInformacaoModal(item.id)"
+                data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-pen"></i></button>
+                
+                <!-- <button tooltip="Detalhes" ype="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" (click)="getInformacaoModal(item.id)"
+                data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-search"></i></button> -->
+
+                <button tooltip="Excluir" ype="button" class="btn btn-outline-danger btn-sm" (click)="excluirProfessor()"> <i class="fas fa-trash-alt"></i></button>
+                
+              </div>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
       
     </div>
-    <div class="modal-body">
-      
-      <form>
-        
-        <div class="form-group">
-          <input type="text" class="form-control" id="disciplina" readonly="true">
-        </div>
-        
-        <div class="form-group">
-          <input type="text" class="form-control" id="tema" readonly="true">
-        </div>
-        
-        
-        <div class="input-group mb-3">
-          <input  type="text" class="form-control" id="conteudista" aria-describedby="basic-addon2" readonly="true">
-          <div class="input-group-append">
-            <span type="button" class="input-group-text btn btn-secondary" id="basic-addon2" data-toggle="modal" data-target="#ModalBusca"><i class="fas fa-sync-alt"></i></span>
-            
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <input type="text" class="form-control" id="area" readonly="true">
-        </div>
-        
-        <div class="form-group">
-          <input type="text" class="form-control" id="subArea" readonly="true">
-        </div>
-        
-        <div class="form-group">
-          <input type="text" class="form-control" id="tipoProducao" readonly="true">
-        </div>
-        
-        <div class="form-group">
-          <input type="text" class="form-control" id="produto" readonly="true">
-        </div>
-        
-        <div class="form-group">
-          <select class=" form-control">
-            <option *ngFor="let item of etapa" value={{item.id}}>{{item.nomeEtapa}}</option>
-          </select>
-        </div>
-        
-        <!--data picker -->
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-      <button type="button" class="btn btn-primary">Salvar</button>
-      
-    </div>
-    
   </div>
-</div>
+  
+  <!--inicio do modal-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar Produção</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span> &times;</span>
+        </button>
+        
+      </div>
+      <div class="modal-body">
+        
+        <form>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="disciplina" readonly="true">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="tema" readonly="true">
+          </div>
+          
+          
+          <div class="input-group mb-3">
+            <input [value]="nomeProfessorTeste" type="text" class="form-control" id="conteudista" aria-describedby="basic-addon2" readonly="true">
+            
+            <div class="input-group-append">
+              <span type="button" class="input-group-text btn btn-secondary" id="basic-addon2" data-toggle="modal" data-target="#ModalBusca"><i class="fas fa-sync-alt"></i></span>
+              
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="area" readonly="true">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="subArea" readonly="true">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="tipoProducao" readonly="true">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" class="form-control" id="produto" readonly="true">
+          </div>
+          
+          <div class="form-group">
+            <select class=" form-control">
+              <option *ngFor="let item of etapa" value={{item.id}}>{{item.nomeEtapa}}</option>
+            </select>
+          </div>
+          
+          <!--data picker -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Salvar</button>
+        
+      </div>
+      
+    </div>
+  </div>
 </div>
 <!--fim do modal-->
 
@@ -115,7 +136,7 @@ aria-hidden="true">
     <div class="modal-content">
       <div class="modal-body">
         Selecione o professor
-        <input type="text" class="form-control" id="prof" placeholder="Digite o nome do professor:" (keyup)="filtraProfessor()" [value]="nomeConteudista">
+        <input  [value]="nomeProfessorTeste" type="text" class="form-control" id="prof" placeholder="Digite o nome do professor:" (keyup)="filtraProfessor()">  <!-- [value]="nomeConteudista" -->
         <div *ngIf="filtroConteudista">
           <table id="tbprof" class="table" *ngFor="let item of filtroConteudista">
             <tbody>
@@ -125,9 +146,9 @@ aria-hidden="true">
                     <div class="col-md-10">{{item.nomeConteudista}}
                     </div>
                     <div class="col-md-2">
-                      <input type="radio" name="teste" value="{{item.id}}">
+                      <input [(ngModel)]="idProfessorTeste" type="radio" name="teste" value="{{item.id}}">
                     </div>
-                    </div>
+                  </div>
                 </td>
                 
               </tr>

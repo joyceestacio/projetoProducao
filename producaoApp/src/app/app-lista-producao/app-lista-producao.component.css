@@ -1,3 +1,7 @@
 :hover #tbprof {
     cursor: pointer;
 }
+
+td {
+    padding: 5px;
+}

@@ -26,6 +26,7 @@ namespace producao.api.Model
         public int? IdEtapa { get; set; }
         [ForeignKey("TipoProducao")]
         public int? IdTipo { get; set; }  
+        // public int indDeletada { get; set; }
          
         // public DateTime Data { get; set; }
 

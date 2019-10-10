@@ -101,24 +101,37 @@ namespace producao.api.Controllers
         {
         }
 
-        [HttpPost("incluir")]
-        public ActionResult incluir([FromBody] FProducao _producao)
-        {
+        // [HttpPost("incluir")]
+        // public ActionResult incluir([FromBody] FProducao _producao)
+        // {
             
-            // int ultimoid = this.ProducaoContext.FProducao
-            //                 .ToList().Max(x => x.Id) + 1;
+        //     // int ultimoid = this.ProducaoContext.FProducao
+        //     //                 .ToList().Max(x => x.Id) + 1;
 
             
-            try
-            {
-                    this.ProducaoContext.FProducao.Add(_producao);
-                    this.ProducaoContext.SaveChanges();
-                    return Ok(_producao);
-            }
-            catch (System.Exception e)
-            { 
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
+        //     try
+        //     {
+        //             this.ProducaoContext.FProducao.Add(_producao);
+        //             this.ProducaoContext.SaveChanges();
+        //             return Ok(_producao);
+        //     }
+        //     catch (System.Exception e)
+        //     { 
+        //         return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+        //     }
+
+        // }
+
+
+        [HttpPost]
+        public ActionResult Excluir([FromBody] int id) {
+            
+            FProducao prof = this.ProducaoContext.FProducao.Find(id);
+
+            this.ProducaoContext.FProducao.Remove(prof);
+            this.ProducaoContext.SaveChanges();
+
+            return null;
 
         }
 

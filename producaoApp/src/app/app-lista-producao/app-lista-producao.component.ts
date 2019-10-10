@@ -1,4 +1,4 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ɵConsole, Input, } from '@angular/core';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -26,6 +26,9 @@ export class AppListaProducaoComponent implements OnInit {
   filtroConteudista: any[];
   nomeConteudista = '';
   producao: IProducao;
+  nomeProfessorTeste: any = '';
+  idProfessorTeste: any;
+  dadosFiltrados: any[];
 
 
   constructor(private local: BsLocaleService, private projetoProducaoService: ProjetoProducaoService ) {
@@ -38,7 +41,7 @@ export class AppListaProducaoComponent implements OnInit {
     this.projetoProducaoService.getProfessores().subscribe(
 
      response => {
-       
+  
        this.conteudistas = response;
        console.log(response);
      },
@@ -50,16 +53,15 @@ export class AppListaProducaoComponent implements OnInit {
   }
 
   selectProf() {
-    var obj: any = document.querySelector('input:checked');
+    // var obj: any = document.querySelector('input:checked');
+    console.log('nome do binding: ' + this.nomeProfessorTeste);
 
-    var nomeProf = this.conteudistas.filter(x => x.id == obj.value)[0].nomeConteudista;
+    var prof: any = this.conteudistas.filter(x => x.id == this.idProfessorTeste)[0];
 
-    obj = document.getElementById('conteudista');
-    obj.value = nomeProf;
+    // obj = document.getElementById('conteudista');
 
+    this.nomeProfessorTeste = prof.nomeConteudista;
 
-
-    console.log(nomeProf);
 
   }
 
@@ -89,6 +91,7 @@ export class AppListaProducaoComponent implements OnInit {
      response => {
        this.dados = response;
        console.log(this.dados);
+       this.dadosFiltrados = this.dados;
      },
       error => {
     }
@@ -115,7 +118,7 @@ export class AppListaProducaoComponent implements OnInit {
 
       var item = this.dadoSelecionado[0];
 
-      modal = document.getElementById('disciplina'); 
+      modal = document.getElementById('disciplina');
       modal.value = item.disciplina.nomeDisciplina;
       
       modal = document.getElementById('tema');
@@ -129,7 +132,7 @@ export class AppListaProducaoComponent implements OnInit {
 
       modal = document.getElementById('subArea');
       modal.value = item.subArea.nomeSubArea;
-      
+
       modal = document.getElementById('tipoProducao');
       modal.value = item.tipoProducao.nomeTipoProducao;
 
@@ -142,16 +145,42 @@ export class AppListaProducaoComponent implements OnInit {
       this.producao = new IProducao();
       this.producao.id = item.id;
       this.producao.idEtapa = item.idEtapa;
-      
+
    }
 
-   incluir(){
-      
+   salvarProducao() {
+
    }
 
+   filtrarItem(value: any) {
+     this.dadosFiltrados = this.dados;
+    this.dadosFiltrados = this.dadosFiltrados
+      .filter(x => x.disciplina.nomeDisciplina
+          .search(value.toLocaleUpperCase()) !== -1 ||
+              x.tema.nomeTema
+          .search(value.toLocaleUpperCase()) !== -1 ||
+          x.etapaProducao.nomeEtapa
+      .search(value.toLocaleUpperCase()) !== -1 ||
+          x.disciplina.codigoDisciplina.search(value.toLocaleUpperCase()) !== -1);
+
+   }
+
+  
 
   ngOnInit() {
     this.getProducao();
+  }
+
+
+  excluirProfessor() {
+
+    if (confirm('Você deseja excluir essa produção?')) {
+        alert('Excluída');
+    } else {
+      alert('Não Excluída');
+    }
+
+
   }
 
 }
