@@ -16,7 +16,7 @@
     </div>
 
     <div class="col-md-1 offset-3">
-      <button href="index.html" class="btn btn-primary">Voltar</button>
+      <button [routerLink]="['']" class="btn btn-primary">Voltar</button>
       </div>  
     </div>
     <div class="row">
@@ -45,7 +45,7 @@
                 <!-- <button tooltip="Detalhes" ype="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" (click)="getInformacaoModal(item.id)"
                 data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-search"></i></button> -->
 
-                <button tooltip="Excluir" ype="button" class="btn btn-outline-danger btn-sm" (click)="excluirProfessor()"> <i class="fas fa-trash-alt"></i></button>
+                <button tooltip="Excluir" ype="button" class="btn btn-outline-danger btn-sm" (click)="excluirProducao(item.id, item.disciplina.nomeDisciplina)"> <i class="fas fa-trash-alt"></i></button>
                 
               </div>
               

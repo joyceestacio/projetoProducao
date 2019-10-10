@@ -1,9 +1,10 @@
-import { Component, OnInit, ɵConsole, Input, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { IProducao } from '../interfaces/IProducao';
 import { ProjetoProducaoService } from '../_services/projetoProducao.service';
+import { Router } from '@angular/router';
 
 
 
@@ -31,8 +32,12 @@ export class AppListaProducaoComponent implements OnInit {
   dadosFiltrados: any[];
 
 
-  constructor(private local: BsLocaleService, private projetoProducaoService: ProjetoProducaoService ) {
+
+  constructor(private local: BsLocaleService,
+              private projetoProducaoService: ProjetoProducaoService,
+              private router: Router) {
     local.use('pt-br');
+
 
    }
 
@@ -167,17 +172,33 @@ export class AppListaProducaoComponent implements OnInit {
 
   
 
-  ngOnInit() {
+  ngOnInit()  {
+    // this.router.navigation
+
     this.getProducao();
+
   }
 
 
-  excluirProfessor() {
+  excluirProducao(id: number, nome: string) {
 
-    if (confirm('Você deseja excluir essa produção?')) {
+    if (confirm('Você deseja excluir ' + nome + '?')) {
         alert('Excluída');
-    } else {
-      alert('Não Excluída');
+        // Atualiza a tela da tabela
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate(['/listaProducao']);
+        this.projetoProducaoService.excluirProducao(id).subscribe(
+          response => {
+            console.log(response);
+            this.getProducao();
+            
+          },
+          error => {
+            console.log(error);
+          }
+          );
+          } else {
+      // alert('Não Excluída');
     }
 
 

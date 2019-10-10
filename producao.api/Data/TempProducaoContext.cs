@@ -69,7 +69,7 @@ namespace producao.api.Model
 
                 entity.Property(e => e.IdTipo).HasColumnName("ID_TIPO");
 
-                // entity.Property(e => e.indDeletada).HasColumnName("IND_DELETADA");
+                entity.Property(e => e.indDeletada).HasColumnName("IND_DELETADA");
             });
 
             modelBuilder.Entity<Area>(entity =>
