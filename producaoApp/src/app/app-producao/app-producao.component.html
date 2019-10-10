@@ -17,7 +17,7 @@
           <select class=" form-control" id="disciplina">
             <option disabled value="">ESCOLHA UMA DISCIPLINA</option>
             <option *ngFor="let item of disciplinas" value={{item.id}}>
-              {{item.nomeDisciplina + "(" + item.codigoDisciplina + ")"}}
+              {{item.nomeDisciplina + " - " + item.codigoDisciplina }}
             </option>
           </select>
         </div>
