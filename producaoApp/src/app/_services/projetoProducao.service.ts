@@ -46,6 +46,12 @@ export class ProjetoProducaoService {
     return this.http.put(this.baseUrl + 'excluir', idProducao);
   }
 
+  atualizaProducao(values: any[]) {
+
+    return this.http.post(this.baseUrl + 'atualizar', values);
+    
+  }
+
   /* ambiente teste
   getProfessores() {
     return this.http.get(this.baseUrlGetProfessores);

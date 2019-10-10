@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵclearResolutionOfComponentResourcesQueue } from '@angular/core';
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -48,7 +48,7 @@ export class AppListaProducaoComponent implements OnInit {
      response => {
   
        this.conteudistas = response;
-       console.log(response);
+       //console.log(response);
      },
      error => {
     }
@@ -59,7 +59,7 @@ export class AppListaProducaoComponent implements OnInit {
 
   selectProf() {
     // var obj: any = document.querySelector('input:checked');
-    console.log('nome do binding: ' + this.nomeProfessorTeste);
+    //console.log('nome do binding: ' + this.nomeProfessorTeste);
 
     var prof: any = this.conteudistas.filter(x => x.id == this.idProfessorTeste)[0];
 
@@ -75,7 +75,7 @@ export class AppListaProducaoComponent implements OnInit {
 
     if (this.nomeConteudista.length > 3 ) {
         this.filtroConteudista = this.conteudistas.filter(x => x.nomeConteudista.search(this.nomeConteudista.toLocaleUpperCase()) !== -1);
-        console.log(this.nomeConteudista);
+        //console.log(this.nomeConteudista);
     }
     else {
       this.filtroConteudista = [];
@@ -85,7 +85,7 @@ export class AppListaProducaoComponent implements OnInit {
     // this.nomeConteudista = obj.value;
      var obj: any = document.getElementById('prof');
      this.nomeConteudista = obj.value;
-     console.log();
+     //console.log();
 
   }
 
@@ -95,7 +95,7 @@ export class AppListaProducaoComponent implements OnInit {
 
      response => {
        this.dados = response;
-       console.log(this.dados);
+       //console.log(this.dados);
        this.dadosFiltrados = this.dados;
      },
       error => {
@@ -107,7 +107,8 @@ export class AppListaProducaoComponent implements OnInit {
          this.etapa = Response;
        },
        error => {
-         console.log(error)}
+         //console.log(error)
+        }
      );
 
    }
@@ -153,7 +154,28 @@ export class AppListaProducaoComponent implements OnInit {
 
    }
 
-   salvarProducao() {
+   atualizaProducao(idEtapa: any, nome: any) { 
+     //console.log(this.dadoSelecionado);
+     var idprof = this.conteudistas.filter(x => x.nomeConteudista == nome.value)[0].id;
+     //console.log(idprof);
+     var idProd = this.dadoSelecionado[0].id;
+
+     var values = [idProd, idprof, idEtapa];
+
+     this.router.onSameUrlNavigation = 'reload';
+     this.router.navigate(['/listaProducao']);
+
+     this.projetoProducaoService.atualizaProducao(values).subscribe(
+       response =>
+       {
+         //// console.log(response);
+         this.getProducao();
+       },
+       error => {
+         //// console.log(error);
+       }
+     );
+
 
    }
 
@@ -172,36 +194,36 @@ export class AppListaProducaoComponent implements OnInit {
 
   
 
-  ngOnInit()  {
-    // this.router.navigation
-
-    this.getProducao();
-
-  }
-
-
-  excluirProducao(id: number, nome: string) {
-
-    if (confirm('Você deseja excluir ' + nome + '?')) {
-        alert('Excluída');
-        // Atualiza a tela da tabela
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['/listaProducao']);
-        this.projetoProducaoService.excluirProducao(id).subscribe(
-          response => {
-            console.log(response);
-            this.getProducao();
-            
+   
+   
+   excluirProducao(id: number, nome: string) {
+     
+     if (confirm('Você deseja excluir ' + nome + '?')) {
+       
+       // Atualiza a tela da tabela
+       this.router.onSameUrlNavigation = 'reload';
+       this.router.navigate(['/listaProducao']);
+       this.projetoProducaoService.excluirProducao(id).subscribe(
+         response => {
+           //console.log(response);
+           this.getProducao();
+           
           },
           error => {
-            console.log(error);
+            //console.log(error);
           }
           );
-          } else {
-      // alert('Não Excluída');
+        } else {
+          // alert('Não Excluída');
+        }
+        
+        
+      }
+          ngOnInit()  {
+            // this.router.navigation
+        
+            this.getProducao();
+        
+          }
+      
     }
-
-
-  }
-
-}

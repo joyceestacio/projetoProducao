@@ -97,9 +97,20 @@ namespace producao.api.Controllers
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost("atualizar")]
+        public ActionResult Post([FromBody] dynamic values )
         {
+        
+            
+            
+            FProducao prof = this.ProducaoContext.FProducao.Find(Convert.ToInt32(values[0]));
+            prof.IdConteudista = values[1];
+            prof.IdEtapa = Convert.ToInt32(values[2]);
+            this.ProducaoContext.SaveChanges();
+
+            return Ok(prof);
+                    
+
         }
 
         [HttpPost("incluir")]

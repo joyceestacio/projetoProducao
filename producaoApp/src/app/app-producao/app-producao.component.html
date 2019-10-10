@@ -110,8 +110,8 @@
     
     
     <div class="col-md-4 form-group">
-      <a href="index.html" class="btn btn-primary" style="margin-left:45%;"><i class="fas fa-arrow-left"></i> Voltar</a>
-      
+      <button [routerLink]="['/listaProducao']" class="btn btn-primary" style="margin-left:5%;"><i class="fas fa-list"></i> Lista</button>
+      <button [routerLink]="['']" class="btn btn-primary" style="margin-left:5%;"><i class="fas fa-arrow-left"></i> Voltar</button>
       <button type="button" class="btn btn-primary" style="margin-left:5%;" data-toggle="tooltip" data-placement="top" title="salvar"
       (click)="incluir()">
       <span class="fas fa-save fa-1x"></span> Incluir

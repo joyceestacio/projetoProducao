@@ -83,7 +83,7 @@
           
           
           <div class="input-group mb-3">
-            <input [value]="nomeProfessorTeste" type="text" class="form-control" id="conteudista" aria-describedby="basic-addon2" readonly="true">
+            <input #nConteudista [value]="nomeProfessorTeste" type="text" class="form-control" id="conteudista" aria-describedby="basic-addon2" readonly="true">
             
             <div class="input-group-append">
               <span type="button" class="input-group-text btn btn-secondary" id="basic-addon2" data-toggle="modal" data-target="#ModalBusca"><i class="fas fa-sync-alt"></i></span>
@@ -108,17 +108,19 @@
           </div>
           
           <div class="form-group">
-            <select class=" form-control">
+            <select  #idEtapa class=" form-control">
+              <option selected>--Escolha uma etapa--</option> 
               <option *ngFor="let item of etapa" value={{item.id}}>{{item.nomeEtapa}}</option>
             </select>
           </div>
+          
           
           <!--data picker -->
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="atualizaProducao(idEtapa.value, nConteudista)">Salvar</button>
         
       </div>
       
