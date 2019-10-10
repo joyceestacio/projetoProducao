@@ -33,7 +33,7 @@ export class AppListaProducaoComponent implements OnInit {
 
    getProfessores() {
 
-    this.http.get('http://10.200.0.9:81/api/api/values/getProfessores').subscribe(
+    this.projetoProducaoService.getProfessores().subscribe(
 
      response => {
        
@@ -41,7 +41,6 @@ export class AppListaProducaoComponent implements OnInit {
        console.log(response);
      },
      error => {
-      console.log('getProfessor não rodou');
     }
      );
 
@@ -57,6 +56,7 @@ export class AppListaProducaoComponent implements OnInit {
     obj.value = nomeProf;
 
 
+
     console.log(nomeProf);
 
   }
@@ -66,6 +66,7 @@ export class AppListaProducaoComponent implements OnInit {
 
     if (this.nomeConteudista.length > 3 ) {
         this.filtroConteudista = this.conteudistas.filter(x => x.nomeConteudista.search(this.nomeConteudista.toLocaleUpperCase()) !== -1);
+        console.log(this.nomeConteudista);
     }
     else {
       this.filtroConteudista = [];
@@ -75,12 +76,13 @@ export class AppListaProducaoComponent implements OnInit {
     // this.nomeConteudista = obj.value;
      var obj: any = document.getElementById('prof');
      this.nomeConteudista = obj.value;
+     console.log();
 
   }
 
 
    getProducao() {
-     this.http.get('http://10.200.0.9:81/api/api/values/').subscribe(
+     this.projetoProducaoService.getProducao().subscribe(
 
      response => {
        this.dados = response;
@@ -90,13 +92,12 @@ export class AppListaProducaoComponent implements OnInit {
     }
      );
 
-     this.http.get('http://10.200.0.9:81/api/api/values/etapa').subscribe(
+     this.projetoProducaoService.getProducaoEtapa().subscribe(
        Response => {
          this.etapa = Response;
        },
        error => {
-        
-        }
+         console.log(error)}
      );
 
    }
@@ -105,9 +106,10 @@ export class AppListaProducaoComponent implements OnInit {
    getInformacaoModal(id:any) {
       this.dadoSelecionado = this.dados.filter(d => d.id === id);
 
-      this.getProfessores();
+      var conteudistas = this.getProfessores();
 
       var modal: any;
+      var disciplina: any;
 
       var item = this.dadoSelecionado[0];
 
@@ -141,7 +143,7 @@ export class AppListaProducaoComponent implements OnInit {
       
    }
 
-   incluir() {
+   incluir(){
       
    }
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,7 @@ export class ProjetoProducaoService {
   baseUrlPostValuesIncluir = 'http://localhost:5000/api/values/incluir';
   baseUrlGetValuesDados = 'http://localhost:5000/api/values/getDados'; */
 
-  baseUrl = 'http://localhost:5000/api/values/';
-
+  baseUrl = environment.apiUrl + 'values/';
 
   constructor(private http: HttpClient) { }
 
@@ -35,7 +35,7 @@ export class ProjetoProducaoService {
   }
 
   Incluir(body: any) {
-    return this.http.post(this.baseUrl +'incluir',body);
+    return this.http.post(this.baseUrl +'incluir', body);
   }
 
   getProducao() {
