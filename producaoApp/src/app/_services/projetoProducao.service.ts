@@ -22,7 +22,7 @@ export class ProjetoProducaoService {
 
   constructor(private http: HttpClient) { }
 
-  getProducaoValues() {
+  getProducaoValues() { // obtem lista de produções
     return this.http.get(this.baseUrl);
   }
 

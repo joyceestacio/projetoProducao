@@ -5,6 +5,8 @@ import { BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { IProducao } from '../interfaces/IProducao';
 import { ProjetoProducaoService } from '../_services/projetoProducao.service';
 
+
+
 defineLocale ('pt-br', ptBrLocale);
 
 @Component({
@@ -82,7 +84,7 @@ export class AppListaProducaoComponent implements OnInit {
 
 
    getProducao() {
-     this.projetoProducaoService.getProducao().subscribe(
+     this.projetoProducaoService.getProducaoValues().subscribe(
 
      response => {
        this.dados = response;
