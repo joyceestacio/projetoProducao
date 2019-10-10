@@ -52,11 +52,11 @@ namespace producao.api.Controllers
 
         try
         {
-            var Disciplina = this.ProducaoContext.Disciplina.ToList();
-            var Tema = this.ProducaoContext.Tema.ToList();
-            var Conteudista = this.ProducaoContext.Conteudista.ToList();
+            var Disciplina = this.ProducaoContext.Disciplina.OrderBy(x => x.NomeDisciplina).ToList();
+            var Tema = this.ProducaoContext.Tema.OrderBy(t => t.NomeTema).ToList();
+            var Conteudista = this.ProducaoContext.Conteudista.OrderBy(c => c.NomeConteudista).ToList();
             var Area = this.ProducaoContext.Area.ToList();
-            var SubArea = this.ProducaoContext.SubArea.ToList();
+            var SubArea = this.ProducaoContext.SubArea.OrderBy(s => s.NomeSubArea).ToList();
             var TipoProducao = this.ProducaoContext.TipoProducao.ToList();
             var Produto = this.ProducaoContext.Produto.ToList();
             var EtapaProducao = this.ProducaoContext.EtapaProducao.ToList();
@@ -76,7 +76,7 @@ namespace producao.api.Controllers
         }
         catch (System.Exception e)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            return  e.Message;
         }
             
         }

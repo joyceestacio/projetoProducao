@@ -69,7 +69,7 @@ export class AppProducaoComponent implements OnInit {
 
 
     // tslint:disable-next-line: align
-    this.projetoProducaoService.Incluir(this.producao).subscribe(
+    this.http.post('http://10.200.0.9:81/api/api/values/incluir', this.producao).subscribe(
       response => {
         // var resp:any = response;
         // console.log(this.producao);
@@ -88,11 +88,11 @@ export class AppProducaoComponent implements OnInit {
   }
 
   getCadastrarProducao() {
-    this.projetoProducaoService.getProducao().subscribe(
+    this.http.get('http://10.200.0.9:81/api/api/values/getDados').subscribe(
 
      response => {
        this.dadosCasdastrarProducao = response;
-       console.log(this.dadosCasdastrarProducao);
+       // console.log(this.dadosCasdastrarProducao);
        this.getInformacaoInput();
      },
      error => {
