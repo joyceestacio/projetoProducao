@@ -39,8 +39,8 @@
               <!--Botao Modal-->
               <div class="btn-group">
                 
-                <button tooltip= "Editar" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" (click)="getInformacaoModal(item.id)"
-                data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-pen"></i></button>
+                <button tooltip= "Editar" class="btn btn-outline-primary btn-sm" data-toggle="modal" (click)="getInformacaoModal(item.id)"
+                data-target="#exampleModal"><i class="fas fa-pen"></i></button>
                 
                 <!-- <button tooltip="Detalhes" ype="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" (click)="getInformacaoModal(item.id)"
                 data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-search"></i></button> -->
@@ -108,8 +108,8 @@
           </div>
           
           <div class="form-group">
-            <select  #idEtapa class=" form-control">
-              <option selected>--Escolha uma etapa--</option> 
+            <select #idEtapa class="form-control" id="sctEtapa">
+              
               <option *ngFor="let item of etapa" value={{item.id}}>{{item.nomeEtapa}}</option>
             </select>
           </div>
@@ -120,7 +120,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="atualizaProducao(idEtapa.value, nConteudista)">Salvar</button>
+        <button type="button" class="btn btn-primary"  data-dismiss="modal" (click)="atualizaProducao(idEtapa.value)">Salvar</button>
         
       </div>
       
@@ -138,7 +138,8 @@
     <div class="modal-content">
       <div class="modal-body">
         Selecione o professor
-        <input  [value]="nomeProfessorTeste" type="text" class="form-control" id="prof" placeholder="Digite o nome do professor:" (keyup)="filtraProfessor()">  <!-- [value]="nomeConteudista" -->
+        <input  [value]="nomeProfessorTeste" type="text" class="form-control" id="prof" 
+        placeholder="Digite o nome do professor:" (keyup)="filtraProfessor()">  <!-- [value]="nomeConteudista" -->
         <div *ngIf="filtroConteudista">
           <table id="tbprof" class="table" *ngFor="let item of filtroConteudista">
             <tbody>
@@ -148,7 +149,7 @@
                     <div class="col-md-10">{{item.nomeConteudista}}
                     </div>
                     <div class="col-md-2">
-                      <input [(ngModel)]="idProfessorTeste" type="radio" name="teste" value="{{item.id}}">
+                      <input id ="{{item.id}}" type="radio" name="teste">
                     </div>
                   </div>
                 </td>
@@ -160,7 +161,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
         <button type="button" class="btn btn-primary" (click)="selectProf()" data-dismiss="modal">Selecionar</button>
       </div>
     </div>

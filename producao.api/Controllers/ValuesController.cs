@@ -35,6 +35,7 @@ namespace producao.api.Controllers
             .Include(t => t.Tema)
             .Include(t => t.TipoProducao)
             .Where(x => x.indDeletada == null)
+            .OrderBy(x => x.Id)
             .ToList();
             return query;
         }
@@ -102,13 +103,13 @@ namespace producao.api.Controllers
         {
         
             
-            
-            FProducao prof = this.ProducaoContext.FProducao.Find(Convert.ToInt32(values[0]));
-            prof.IdConteudista = values[1];
-            prof.IdEtapa = Convert.ToInt32(values[2]);
+            // int? idProf = (values[1] == null) ? nullConvert.ToInt32(values[1])
+            FProducao Prod = this.ProducaoContext.FProducao.Find(Convert.ToInt32(values[0]));
+            Prod.IdConteudista = Convert.ToInt32(values[1]);
+            Prod.IdEtapa = Convert.ToInt32(values[2]);
             this.ProducaoContext.SaveChanges();
 
-            return Ok(prof);
+            return Ok(Prod);
                     
 
         }

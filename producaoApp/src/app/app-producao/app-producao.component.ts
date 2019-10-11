@@ -64,8 +64,8 @@ export class AppProducaoComponent implements OnInit {
     obj = document.getElementById('produto');
     this.producao.idProduto = obj.value;
 
-    obj = document.getElementById('etapa');
-    this.producao.idEtapa = obj.value;
+    // obj = document.getElementById('etapa');
+    this.producao.idEtapa = 1;
 
 
     // tslint:disable-next-line: align

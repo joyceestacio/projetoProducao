@@ -28,7 +28,7 @@ export class AppListaProducaoComponent implements OnInit {
   nomeConteudista = '';
   producao: IProducao;
   nomeProfessorTeste: any = '';
-  idProfessorTeste: any;
+  idProfessorAlterado: any;
   dadosFiltrados: any[];
 
 
@@ -48,7 +48,7 @@ export class AppListaProducaoComponent implements OnInit {
      response => {
   
        this.conteudistas = response;
-       //console.log(response);
+      // console.log(this.conteudistas);
      },
      error => {
     }
@@ -58,12 +58,13 @@ export class AppListaProducaoComponent implements OnInit {
   }
 
   selectProf() {
-    // var obj: any = document.querySelector('input:checked');
-    //console.log('nome do binding: ' + this.nomeProfessorTeste);
+    var obj: any = document.querySelector('input:checked');
+    this.idProfessorAlterado = obj.id;
 
-    var prof: any = this.conteudistas.filter(x => x.id == this.idProfessorTeste)[0];
+    var prof: any = this.conteudistas.filter(x => x.id == obj.id)[0];
 
     // obj = document.getElementById('conteudista');
+    // alert(prof.nomeConteudista);
 
     this.nomeProfessorTeste = prof.nomeConteudista;
 
@@ -71,11 +72,12 @@ export class AppListaProducaoComponent implements OnInit {
   }
 
 
-  filtraProfessor() {
 
+  filtraProfessor() {
+    // alert(this.conteudistas);
     if (this.nomeConteudista.length > 3 ) {
         this.filtroConteudista = this.conteudistas.filter(x => x.nomeConteudista.search(this.nomeConteudista.toLocaleUpperCase()) !== -1);
-        //console.log(this.nomeConteudista);
+        // console.log('NOME CONTEUDISTA' + this.nomeConteudista);
     }
     else {
       this.filtroConteudista = [];
@@ -103,76 +105,100 @@ export class AppListaProducaoComponent implements OnInit {
      );
 
      this.projetoProducaoService.getProducaoEtapa().subscribe(
-       Response => {
-         this.etapa = Response;
+
+       response => {
+         this.etapa = response;
+         // console.log('RESPONSE' + response[0].id)
        },
        error => {
-         //console.log(error)
+         // console.log('ERROR' + error);
         }
-     );
-
-   }
-
-
-   getInformacaoModal(id:any) {
-      this.dadoSelecionado = this.dados.filter(d => d.id === id);
-
-      var conteudistas = this.getProfessores();
-
-      var modal: any;
-      var disciplina: any;
-
-      var item = this.dadoSelecionado[0];
-
-      modal = document.getElementById('disciplina');
-      modal.value = item.disciplina.nomeDisciplina;
+        );
+        
+      }
       
-      modal = document.getElementById('tema');
-      modal.value = item.tema.nomeTema;
-
-      modal = document.getElementById('conteudista');
-      modal.value = item.conteudista.nomeConteudista;
-
-      modal = document.getElementById('area');
-      modal.value = item.area.nomeArea;
-
-      modal = document.getElementById('subArea');
-      modal.value = item.subArea.nomeSubArea;
-
-      modal = document.getElementById('tipoProducao');
-      modal.value = item.tipoProducao.nomeTipoProducao;
-
+      
+      getInformacaoModal(id:any) {
+        
+        
+        this.dadoSelecionado = null;
+        
+        this.dadoSelecionado = this.dados.filter(d => d.id === id);
+        
+        
+        // this.conteudistas = this.getProfessores();
+        
+        // Carrega base professores
+        this.getProfessores();
+        
+        
+        var modal: any;
+        var disciplina: any;
+        
+        var item = this.dadoSelecionado[0];
+        
+        this.idProfessorAlterado = item.conteudista.id;
+        
+        
+        
+        modal = document.getElementById('disciplina');
+        modal.value = item.disciplina.nomeDisciplina;
+        
+        modal = document.getElementById('tema');
+        modal.value = (item.tema == null) ? "" : item.tema.nomeTema;
+        
+        modal = document.getElementById('conteudista');
+        modal.value = (item.conteudista.nomeConteudista == null) ? "" : item.conteudista.nomeConteudista;
+        
+        
+        modal = document.getElementById('area');
+        modal.value = (item.area==null) ? "" : item.area.nomeArea;
+        
+        
+        modal = document.getElementById('subArea');
+        modal.value = (item.subArea==null) ? "" : item.subArea.nomeSubArea;
+        
+       // alert('Rodou')
+        
+        modal = document.getElementById('tipoProducao');
+        modal.value = (item.tipoProducao==null) ? "" : item.tipoProducao.nomeTipoProducao;
+        
       modal = document.getElementById('produto');
-      modal.value = item.produto.nomeProduto;
+      modal.value = (item.produto==null) ? "" : item.produto.nomeProduto;
+      
+      // modal = document.getElementById('etapaProducao');
+      // modal.value = item.etapaProducao.nomeEtapa;
+      modal = document.getElementById('sctEtapa');
+      modal.value = this.dadoSelecionado[0].etapaProducao.id;
 
-      modal = document.getElementById('etapaProducao');
-      modal.value = item.etapaProducao.nomeEtapa;
 
       this.producao = new IProducao();
       this.producao.id = item.id;
       this.producao.idEtapa = item.idEtapa;
+    
 
    }
 
-   atualizaProducao(idEtapa: any, nome: any) { 
-     //console.log(this.dadoSelecionado);
-     var idprof = this.conteudistas.filter(x => x.nomeConteudista == nome.value)[0].id;
-     //console.log(idprof);
+   atualizaProducao(idEtapa: number) { 
+     var idprof = this.idProfessorAlterado; // this.conteudistas.filter(x => x.nomeConteudista == this.nomeConteudista)[0].id;
      var idProd = this.dadoSelecionado[0].id;
-
+     
      var values = [idProd, idprof, idEtapa];
+     // alert(values);
 
      this.router.onSameUrlNavigation = 'reload';
      this.router.navigate(['/listaProducao']);
+     
+     
 
      this.projetoProducaoService.atualizaProducao(values).subscribe(
        response =>
        {
-         //// console.log(response);
+         // alert(response);
          this.getProducao();
-       },
-       error => {
-         //// console.log(error);
+        },
+        error => {
+           // console.log(error);
        }
      );
 
@@ -221,8 +247,9 @@ export class AppListaProducaoComponent implements OnInit {
       }
           ngOnInit()  {
             // this.router.navigation
-        
+           
             this.getProducao();
+            //console.log('ETAPA' + this.etapa.id);
         
           }
       

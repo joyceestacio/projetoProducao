@@ -27,7 +27,7 @@ export class ProjetoProducaoService {
   }
 
   getProducaoEtapa() {
-    return this.http.get(this.baseUrl + 'etapa');
+    return this.http.get(this.baseUrl +'etapa');
   }
 
   getProfessores() {
