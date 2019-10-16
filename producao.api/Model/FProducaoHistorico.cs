@@ -1,3 +1,5 @@
+using System;
+
 namespace producao.api.Model
 {
     public class FProducaoHistorico
@@ -7,5 +9,6 @@ namespace producao.api.Model
         public int? IdConteudista { get; set; }
         public int? IdEtapa { get; set; }
         public int? indDeletada { get; set; }
+        public DateTime? DataLog { get; set;}
     }
 }

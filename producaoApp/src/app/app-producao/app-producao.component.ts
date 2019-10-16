@@ -86,7 +86,7 @@ export class AppProducaoComponent implements OnInit {
               this.iserror = true;
               this.incluido = false;
               alert('Producao não incluída');
-              // console.log(this.producao);
+              console.log(error);
             }
           );
 

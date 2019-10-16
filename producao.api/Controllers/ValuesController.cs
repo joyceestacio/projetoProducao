@@ -104,17 +104,21 @@ namespace producao.api.Controllers
 
             FProducaoHistorico prdH = new FProducaoHistorico();
 
-            prdH.IdProducao = Convert.ToInt32(values[0]);
-            prdH.IdConteudista = Convert.ToInt32(values[1]);
-            prdH.IdEtapa = Convert.ToInt32(values[2]);
-            // prdH.indDeletada = values.indDeletada;
-            this.ProducaoContext.FProducaoHistorico.Add(prdH);
         
             
             // int? idProf = (values[1] == null) ? nullConvert.ToInt32(values[1])
             FProducao Prod = this.ProducaoContext.FProducao.Find(Convert.ToInt32(values[0]));
+
+            prdH.IdProducao =Prod.Id;
+            prdH.IdConteudista = Prod.IdConteudista;
+            prdH.IdEtapa = Prod.IdEtapa;
+            prdH.DataLog = Prod.Data;
+            // prdH.indDeletada = values.indDeletada;
+            this.ProducaoContext.FProducaoHistorico.Add(prdH);
+
             Prod.IdConteudista = Convert.ToInt32(values[1]);
             Prod.IdEtapa = Convert.ToInt32(values[2]);
+            Prod.Data = DateTime.Now;
             this.ProducaoContext.SaveChanges();
 
             return Ok(Prod);
@@ -140,7 +144,7 @@ namespace producao.api.Controllers
             
             try
             {
-                    
+
                     this.ProducaoContext.FProducao.Add(_producao);
                     this.ProducaoContext.SaveChanges();
                     return Ok(_producao);
@@ -166,7 +170,7 @@ namespace producao.api.Controllers
             prdH.indDeletada = -1;
             this.ProducaoContext.FProducaoHistorico.Add(prdH);
 
-            prof.indDeletada = 1;
+            // prof.indDeletada = 1;
             this.ProducaoContext.SaveChanges();
 
             return prof;

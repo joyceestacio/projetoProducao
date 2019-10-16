@@ -71,6 +71,10 @@ namespace producao.api.Model
                 entity.Property(e => e.IdTipo).HasColumnName("ID_TIPO");
 
                 entity.Property(e => e.indDeletada).HasColumnName("IND_DELETADA");
+
+                entity.Property(e => e.Data).HasColumnName("DATA").HasDefaultValue();
+
+
             });
 
             modelBuilder.Entity<Area>(entity =>
@@ -210,6 +214,8 @@ namespace producao.api.Model
                 entity.Property(e => e.IdEtapa).HasColumnName("ID_ETAPA");
 
                 entity.Property(e => e.indDeletada).HasColumnName("IND_DELETADA");
+
+                entity.Property(e => e.DataLog).HasColumnName("DATA_LOG");
 
            });
 
