@@ -170,7 +170,7 @@ namespace producao.api.Controllers
             prdH.indDeletada = -1;
             this.ProducaoContext.FProducaoHistorico.Add(prdH);
 
-            // prof.indDeletada = 1;
+            prof.indDeletada = 1;
             this.ProducaoContext.SaveChanges();
 
             return prof;
