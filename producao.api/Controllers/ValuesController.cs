@@ -101,6 +101,14 @@ namespace producao.api.Controllers
         [HttpPost("atualizar")]
         public ActionResult Post([FromBody] dynamic values )
         {
+
+            FProducaoHistorico prdH = new FProducaoHistorico();
+
+            prdH.IdProducao = Convert.ToInt32(values[0]);
+            prdH.IdConteudista = Convert.ToInt32(values[1]);
+            prdH.IdEtapa = Convert.ToInt32(values[2]);
+            // prdH.indDeletada = values.indDeletada;
+            this.ProducaoContext.FProducaoHistorico.Add(prdH);
         
             
             // int? idProf = (values[1] == null) ? nullConvert.ToInt32(values[1])
@@ -121,9 +129,18 @@ namespace producao.api.Controllers
             // int ultimoid = this.ProducaoContext.FProducao
             //                 .ToList().Max(x => x.Id) + 1;
 
+            // FProducaoHistorico prdH = new FProducaoHistorico();
+
+            // prdH.IdProducao = _producao.Id;
+            // prdH.IdConteudista = _producao.IdConteudista;
+            // prdH.IdEtapa = _producao.IdEtapa;
+            // prdH.indDeletada = _producao.indDeletada;
+            // this.ProducaoContext.FProducaoHistorico.Add(prdH);
+
             
             try
             {
+                    
                     this.ProducaoContext.FProducao.Add(_producao);
                     this.ProducaoContext.SaveChanges();
                     return Ok(_producao);
@@ -140,6 +157,14 @@ namespace producao.api.Controllers
         public ActionResult<dynamic> Excluir([FromBody] int id) {
             
             FProducao prof = this.ProducaoContext.FProducao.Find(id);
+
+            FProducaoHistorico prdH = new FProducaoHistorico();
+
+            prdH.IdProducao = prof.Id;
+            prdH.IdConteudista = prof.IdConteudista;
+            prdH.IdEtapa = prof.IdEtapa;
+            prdH.indDeletada = -1;
+            this.ProducaoContext.FProducaoHistorico.Add(prdH);
 
             prof.indDeletada = 1;
             this.ProducaoContext.SaveChanges();
