@@ -46,7 +46,7 @@ export class AppListaProducaoComponent implements OnInit {
     this.projetoProducaoService.getProfessores().subscribe(
 
      response => {
-  
+
        this.conteudistas = response;
       // console.log(this.conteudistas);
      },

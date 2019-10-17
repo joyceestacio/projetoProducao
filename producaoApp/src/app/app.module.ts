@@ -4,7 +4,7 @@ import { BsDatepickerModule, BsDatepickerDirective } from 'ngx-bootstrap/datepic
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalModule, TooltipModule } from 'ngx-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +29,7 @@ import { AppListaProducaoComponent } from './app-lista-producao/app-lista-produc
       ModalModule,
       TooltipModule.forRoot(),
       FormsModule,
+      ReactiveFormsModule
    ],
 
    providers: [],

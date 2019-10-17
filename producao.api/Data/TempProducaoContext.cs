@@ -25,6 +25,7 @@ namespace producao.api.Model
         public virtual DbSet<SubArea> SubArea { get; set; }
         public virtual DbSet<Tema> Tema { get; set; }
         public virtual DbSet<TipoProducao> TipoProducao { get; set; }
+        public virtual DbSet<FProducaoHistorico> FProducaoHistorico { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -70,6 +71,10 @@ namespace producao.api.Model
                 entity.Property(e => e.IdTipo).HasColumnName("ID_TIPO");
 
                 entity.Property(e => e.indDeletada).HasColumnName("IND_DELETADA");
+
+                entity.Property(e => e.Data).HasColumnName("DATA").HasDefaultValue();
+
+
             });
 
             modelBuilder.Entity<Area>(entity =>
@@ -191,6 +196,26 @@ namespace producao.api.Model
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.NomeTipoProducao).HasColumnName("NOM_TIPO_PRODUCAO");
+
+           });
+
+           modelBuilder.Entity<FProducaoHistorico>(entity =>
+           {
+                entity.HasKey(e => e.Id);
+
+                entity.ToTable("fProducao_historico");
+
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.IdProducao).HasColumnName("ID_PRODUCAO");
+
+                entity.Property(e => e.IdConteudista).HasColumnName("ID_CONTEUDISTA");
+
+                entity.Property(e => e.IdEtapa).HasColumnName("ID_ETAPA");
+
+                entity.Property(e => e.indDeletada).HasColumnName("IND_DELETADA");
+
+                entity.Property(e => e.DataLog).HasColumnName("DATA_LOG");
 
            });
 

@@ -32,9 +32,9 @@
         <tbody>
           <div *ngIf="!dadosFiltrados.length" class="alert alert-danger mt-2">Ops! Dados não localizados</div>
           <tr *ngFor="let item of dadosFiltrados">
-            <td>{{item.tema.nomeTema}}</td>
-            <td>{{item.disciplina.nomeDisciplina}}</td>
-            <td>{{item.etapaProducao.nomeEtapa}}</td>
+            <td>{{item.tema?.nomeTema}}</td>
+            <td>{{item.disciplina?.nomeDisciplina}}</td>
+            <td>{{item.etapaProducao?.nomeEtapa}}</td>
             <td>
               <!--Botao Modal-->
               <div class="btn-group">
@@ -110,7 +110,7 @@
           <div class="form-group">
             <select #idEtapa class="form-control" id="sctEtapa">
               
-              <option *ngFor="let item of etapa" value={{item.id}}>{{item.nomeEtapa}}</option>
+              <option *ngFor="let item of etapa" value={{item.id}}>{{item?.nomeEtapa}}</option>
             </select>
           </div>
           
@@ -146,7 +146,7 @@
               <tr>
                 <td>
                   <div class="row">
-                    <div class="col-md-10">{{item.nomeConteudista}}
+                    <div class="col-md-10">{{item?.nomeConteudista}}
                     </div>
                     <div class="col-md-2">
                       <input id ="{{item.id}}" type="radio" name="teste">
