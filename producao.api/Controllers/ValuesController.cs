@@ -27,7 +27,7 @@ namespace producao.api.Controllers
             var query = ProducaoContext.FProducao
             .Include(a => a.Area)
             .Include(c => c.Conteudista)
-            .Include(c => c.Curso)
+            //.Include(c => c.Curso)
             .Include(d => d.Disciplina)
             .Include(e => e.EtapaProducao)
             .Include(p => p.Produto)

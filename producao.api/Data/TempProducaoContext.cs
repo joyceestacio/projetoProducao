@@ -17,12 +17,11 @@ namespace producao.api.Model
 
         public virtual DbSet<Area> Area { get; set; }
         public virtual DbSet<Conteudista> Conteudista { get; set; }
-        public virtual DbSet<Curso> Curso { get; set; }
-        public virtual DbSet<Disciplina> Disciplina { get; set; }
         public virtual DbSet<EtapaProducao> EtapaProducao { get; set; }
         public virtual DbSet<FProducao> FProducao { get; set; }
         public virtual DbSet<Produto> Produto { get; set; }
         public virtual DbSet<SubArea> SubArea { get; set; }
+        public virtual DbSet<Disciplina> Disciplina { get; set; }
         public virtual DbSet<Tema> Tema { get; set; }
         public virtual DbSet<TipoProducao> TipoProducao { get; set; }
         public virtual DbSet<FProducaoHistorico> FProducaoHistorico { get; set; }
@@ -52,7 +51,7 @@ namespace producao.api.Model
 
                 entity.Property(e => e.IdArea).HasColumnName("ID_AREA");
 
-                entity.Property(e => e.IdCodCurso).HasColumnName("ID_CURSO");
+               // entity.Property(e => e.IdCodCurso).HasColumnName("ID_CURSO");
 
                 entity.Property(e => e.IdConteudista).HasColumnName("ID_CONTEUDISTA");
 
@@ -60,7 +59,7 @@ namespace producao.api.Model
 
                 entity.Property(e => e.IdEtapa).HasColumnName("ID_ETAPA");
 
-                entity.Property(e => e.IdPeriodo).HasColumnName("ID_PERIODO");
+                //entity.Property(e => e.IdPeriodo).HasColumnName("ID_PERIODO");
 
                 entity.Property(e => e.IdProduto).HasColumnName("ID_PRODUTO");
 
@@ -105,20 +104,20 @@ namespace producao.api.Model
 
            });
 
-            modelBuilder.Entity<Curso>(entity =>
-            {
-                entity.HasKey(e => e.Id)
-                    .ForSqlServerIsClustered(false);
+            // modelBuilder.Entity<Curso>(entity =>
+            // {
+            //     entity.HasKey(e => e.Id)
+            //         .ForSqlServerIsClustered(false);
 
-                entity.ToTable("dCurso");
+            //     entity.ToTable("dCurso");
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+            //     entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.CodigoCurso).HasColumnName("COD_CURSO");
+            //     entity.Property(e => e.CodigoCurso).HasColumnName("COD_CURSO");
 
-                entity.Property(e => e.NomeCurso).HasColumnName("NOM_CURSO");
+            //     entity.Property(e => e.NomeCurso).HasColumnName("NOM_CURSO");
 
-            });
+            // });
 
             modelBuilder.Entity<Disciplina>(entity =>
             {
@@ -181,8 +180,8 @@ namespace producao.api.Model
 
                 entity.Property(e => e.Id).HasColumnName("ID");
                 entity.Property(e => e.NomeTema).HasColumnName("NOM_TEMA");
-                entity.Property(e => e.IdAreaCuradoria).HasColumnName("ID_AREA_CURADORIA");
-                entity.Property(e => e.SubAreaCuradora).HasColumnName("ID_SUBAREA_CURADORIA");
+                // entity.Property(e => e.IdAreaCuradoria).HasColumnName("ID_AREA_CURADORIA");
+                // entity.Property(e => e.SubAreaCuradora).HasColumnName("ID_SUBAREA_CURADORIA");
 
            });
 

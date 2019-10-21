@@ -7,11 +7,13 @@ namespace producao.api.Model
     public partial class FProducao
     {
         public int Id { get; set; }
-        [ForeignKey("Curso")]
-        public int? IdCodCurso { get; set; }
-        public int IdPeriodo { get; set; }
+        // [ForeignKey("Curso")]
+        // public int? IdCodCurso { get; set; }
+        // public int IdPeriodo { get; set; }
+
         [ForeignKey("Disciplina")]
         public int? IdDisciplina { get; set; }
+
         [ForeignKey("Tema")]
         public int? IdTema { get; set; }
         [ForeignKey("Conteudista")]
@@ -34,7 +36,7 @@ namespace producao.api.Model
         /*essas informações vem do model criado (Relações)*/
         public virtual Area Area { get; set; }
         public virtual Conteudista Conteudista { get; set;}
-        public virtual Curso Curso { get; set;}
+        // public virtual Curso Curso { get; set;}
         public virtual Disciplina Disciplina {get; set; }
         public virtual EtapaProducao EtapaProducao { get; set; }
         public virtual Produto Produto { get; set;}
